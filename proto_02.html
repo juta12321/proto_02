@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>状態が悪いゴミステーションの場所</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="proto_02.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+
+    <H1>ゴミステーションの状態で治安を確認！</H1>
+    <p>黄色：ゴミステーションの状態が良い</p>
+    <p>赤：ゴミステーションの状態が良くない</p>
+    <div id="map"></div>
+
+
+
+    <br>
+    br
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=【key】&callback=initMap&v=weekly" async>
+    </script>
+
+
+
+    <script>
+
+        //表示位置の定義(悪いゴミステーション)
+        const data = [
+            { name: "", lat: 34.052400, lng: 131.829000 },
+            { name: "", lat: 34.052600, lng: 131.829000 },
+            { name: "", lat: 34.049600, lng: 131.831001 },
+            { name: "", lat: 34.049400, lng: 131.832000 },
+            { name: "", lat: 34.050200, lng: 131.831000 },
+            { name: "", lat: 34.050800, lng: 131.832000 },
+            { name: "", lat: 34.051100, lng: 131.831000 },
+
+        ];
+
+        //表示位置の定義(良いゴミステーション)
+        const data2 = [
+            { name: "", lat: 34.051100, lng: 131.831000 },
+            { name: "", lat: 34.052600, lng: 131.830000 },
+            { name: "", lat: 34.052800, lng: 131.830000 },
+            { name: "", lat: 34.052700, lng: 131.832000 },
+            { name: "", lat: 34.052200, lng: 131.831000 },
+            { name: "", lat: 34.052100, lng: 131.831000 },
+            { name: "", lat: 34.051600, lng: 131.831000 },
+            { name: "", lat: 34.051200, lng: 131.831000 },
+            { name: "", lat: 34.050700, lng: 131.830000 },
+            { name: "", lat: 34.050500, lng: 131.830000 },
+            { name: "", lat: 34.050300, lng: 131.830000 },
+            { name: "", lat: 34.049600, lng: 131.831000 },
+            { name: "", lat: 34.049900, lng: 131.831000 },
+            { name: "", lat: 34.050400, lng: 131.832000 },
+            { name: "", lat: 34.049700, lng: 131.831000 },
+            { name: "", lat: 34.048600, lng: 131.832000 },
+            { name: "", lat: 34.051700, lng: 131.829000 },
+            { name: "", lat: 34.051700, lng: 131.829000 },
+            { name: "", lat: 34.051700, lng: 131.828000 },
+
+
+        ];
+
+
+
+
+
+        function initMap() {
+
+            //指定した位置情報を中心にマップを表示
+            let map;
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: {
+                    lat: 34.052400, lng: 131.829000,
+                },
+                radius: 70,
+                zoom: 16.5,
+            });
+
+            data.map(d => {
+                // マーカーをつける
+                const marker = new google.maps.Marker({
+                    position: { lat: d.lat, lng: d.lng },
+                    map: map,
+                    icon: {
+                        url: "img/circle_red.png",
+                        scaledSize: new google.maps.Size(90, 90)
+                    }
+                });
+            });
+
+            data2.map(d2 => {
+                // マーカーをつける
+                const marker2 = new google.maps.Marker({
+                    position: { lat: d2.lat, lng: d2.lng },
+                    map: map,
+                    icon: {
+                        url: "img/circle_yellow.png",
+                        scaledSize: new google.maps.Size(90, 90)
+                    }
+                });
+            });
+
+
+
+
+
+
+            /*
+            マーカーを修正
+            const cityCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 0,
+                fillColor: '#FF0000',
+                fillOpacity: 0.5,
+                map: map,
+                center: map.center,
+                radius: map.radius
+            });
+            */
+
+
+
+
+
+        }
+
+
+
+
+
+
+    </script>
